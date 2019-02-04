@@ -151,7 +151,6 @@ module JavaBuildpack
 
       def download_agent(java_agent_zip_uri)
         @logger.debug { "Before downloading Agent from: #{java_agent_zip_uri}" }
-        JavaBuildpack::Util::Cache::CacheFactory.allowed_url(java_agent_zip_uri)
         download_zip('', java_agent_zip_uri, false, @droplet.sandbox)
       end
 
@@ -161,7 +160,6 @@ module JavaBuildpack
         shell "rm -rf #{seeker_tmp_dir}"
         sensor_direct_link = sensor_direct_link(credentials)
         @logger.debug { "Before downloading Sensor from: #{sensor_direct_link}" }
-        JavaBuildpack::Util::Cache::CacheFactory.allowed_url(sensor_direct_link)
         download_zip('', sensor_direct_link,
                      false, seeker_tmp_dir, 'SensorInstaller.zip')
         inner_jar_file = seeker_tmp_dir + 'SeekerInstaller.jar'
